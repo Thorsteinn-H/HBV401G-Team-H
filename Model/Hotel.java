@@ -1,9 +1,13 @@
-package MainPackage;
+package Model;
 
 /**
  * Nafn : Þorsteinn H. Erlendsson
  * Tölvupóstur: the85@hi.is
  * Lýsing:
  **/
-public class Customer {
+public class Hotel {
+
+
+
+
 }
