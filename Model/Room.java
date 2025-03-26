@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.Date;
-
+import java.util.List;
 /**
  * Nafn : Þorsteinn H. Erlendsson
  * Tölvupóstur: the85@hi.is
@@ -10,8 +10,6 @@ import java.util.Date;
 public class Room {
 
 
-import java.util.Date;
-import java.util.List;
 
 public class Room {
     private Integer id;
