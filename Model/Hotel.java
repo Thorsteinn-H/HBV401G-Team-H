@@ -58,7 +58,7 @@ public class Hotel {
     }
 
     public void cancelBooking(Booking booking) {
-        rooms.add(booking.getRoomChosen());
+        rooms.add(booking.getRoom());
     }
 
     public List<Room> getAvailableRooms(Date checkIn, Date checkOut) {

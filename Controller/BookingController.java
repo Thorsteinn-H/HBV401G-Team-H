@@ -1,6 +1,7 @@
 package Controller;
 import Model.Booking;
 import Model.Customer;
+import Model.Hotel;
 import Model.Room;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,11 +19,12 @@ public class BookingController {
         return new ArrayList<>(bookings);
     }
 
-    public Booking createNewBooking(Customer customer, Date checkIn, Date checkOut, Room roomChosen) {
-        Booking newBooking = Booking.bookHotel(customer, checkIn, checkOut, roomChosen);
+    public Booking createNewBooking(Customer customer, Date checkIn, Date checkOut, Hotel hotel, Room roomChosen) {
+        Booking newBooking = Booking.bookHotel(customer, checkIn, checkOut, hotel, roomChosen);
         bookings.add(newBooking);
         return newBooking;
     }
+
 
     public boolean removeBooking(Booking booking) {
         return bookings.remove(booking);
