@@ -48,10 +48,11 @@ public class Hotel {
         return description;
     }
 
-    public Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Room roomChosen) {
-        return new Booking(customer, this, checkIn, checkOut, roomChosen);
-    }
 
+
+    public Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Room roomChosen) {
+        return new Booking(1, customer, roomChosen.getId(), this, checkIn, checkOut, roomChosen.getPrice(), "pending", "card");
+    }
     public String getImagesURL() {
         return imagesURL;
     }

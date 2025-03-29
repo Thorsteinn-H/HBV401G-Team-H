@@ -22,6 +22,10 @@ public class Room {
         this.imagesURL = imagesURL;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public boolean checkAvailability(Date date) {
         return available.contains(date);
     }
