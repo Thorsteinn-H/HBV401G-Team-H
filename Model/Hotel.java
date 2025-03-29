@@ -57,9 +57,7 @@ public class Hotel {
         return imagesURL;
     }
 
-    public void cancelBooking(Booking booking) {
-        rooms.add(booking.getRoom());
-    }
+
 
     public List<Room> getAvailableRooms(Date checkIn, Date checkOut) {
         List<Room> availableRooms = new ArrayList<>();

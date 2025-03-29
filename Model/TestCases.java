@@ -5,10 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
-
-
 
 /**
  * Nafn : Þorsteinn H. Erlendsson
@@ -35,10 +32,10 @@ public class TestCases {
     public void testAddCustomer() {
         customerController.addCustomer(customer);
         Customer testCustomer = customerController.getCustomer(customer.getUsername());
-        assertEquals(customer,testCustomer);    
+        assertEquals(customer,testCustomer);
     }
     @Test
-    public void testRemoveCustomer() { 
+    public void testRemoveCustomer() {
         //add customer from fresh plate (assumes previous test works and input customerController is empty)
         customerController.addCustomer(customer);
         Customer testCustomer = customerController.getCustomer(customer.getUsername());
@@ -49,6 +46,5 @@ public class TestCases {
         assertTrue(listCustomers.isEmpty());
 
     }
-
 
 }
