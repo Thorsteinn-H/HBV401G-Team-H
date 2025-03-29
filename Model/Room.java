@@ -8,10 +8,6 @@ import java.util.List;
  * Lýsing:
  **/
 public class Room {
-
-
-
-public class Room {
     private Integer id;
     private List<Date> available;
     private Integer price;
