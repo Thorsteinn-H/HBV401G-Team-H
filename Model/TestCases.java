@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 
 
 /**
@@ -15,27 +17,38 @@ import static org.junit.jupiter.api.Assertions.*;
  **/
 public class TestCases {
 
+    private CustomerController customerController;
+    private Customer customer;
+
+
     @BeforeEach
     public void setUp(){
-
-        CustomerController customerController = new CustomerController();
-        Customer customer = new Customer("username", "realName", "password", "email", "phoneNumber");
-
+        customerController = new CustomerController();
+        customer = new Customer("username", "realName", "password", "email", "phoneNumber");
     }
     @AfterEach
     public void tearDown(){
         customerController = null;
         customer = null;
     }
-
     @Test
-    public void testCustomer() {
-        CustomerController.addCustomer(customer);
-        testCustomer = CustomerController.getCustomer(customer.getUsername());
-        assertEquals(customer,testCustomer(););
-        CustomerController.removeCustomer(testCustomer.getUsername());
-        listCustomers = CustomerController.getAllCustomers();
-        assertTrue(listCustomers.isEmpty());
+    public void testAddCustomer() {
+        customerController.addCustomer(customer);
+        Customer testCustomer = customerController.getCustomer(customer.getUsername());
+        assertEquals(customer,testCustomer);    
     }
+    @Test
+    public void testRemoveCustomer() { 
+        //add customer from fresh plate (assumes previous test works and input customerController is empty)
+        customerController.addCustomer(customer);
+        Customer testCustomer = customerController.getCustomer(customer.getUsername());
+
+        //Removes based on previous getcustomer
+        customerController.removeCustomer(testCustomer.getUsername());
+        List<Customer> listCustomers = customerController.getAllCustomers();
+        assertTrue(listCustomers.isEmpty());
+
+    }
+
 
 }

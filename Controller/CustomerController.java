@@ -8,6 +8,9 @@ package Controller;
 
 import Model.Customer;
 
+// import mock DB
+import Storage.mockCustomerDB;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class CustomerController {
 
     public void addCustomer(Customer customer) {
         customers.add(customer);
+
     }
 
     public void removeCustomer(String username) {
