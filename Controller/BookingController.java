@@ -19,7 +19,7 @@ public class BookingController {
     }
 
     public Booking createNewBooking(Customer customer, Date checkIn, Date checkOut, Room roomChosen) {
-        Booking newBooking = Booking.bookHotel(customer, checkIn, checkOut, roomChosen);
+        Booking newBooking = Booking.bookHotel(customer, checkIn, checkOut,roomChosen.getHotel(), roomChosen);
         bookings.add(newBooking);
         return newBooking;
     }

@@ -40,9 +40,10 @@ public class Booking {
         return customer;
     }
 
-    public Room getRoom(Integer roomID) {
-        return hotel.getRoomByID(roomID);
+    public Room getRoom() {
+        return hotel.getRoomByID(room);
     }
+
 
     public Hotel getHotel() {
         return hotel;
@@ -88,7 +89,9 @@ public class Booking {
         }
     }
 
-    public static Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Room roomChosen) {
-        return new Booking(1, customer, roomChosen.getId(), roomChosen.getHotel(), checkIn, checkOut, roomChosen.getPrice(), "pending", "card");
+    public static Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Hotel hotel, Room roomChosen) {
+        return new Booking(1, customer, roomChosen.getId(), hotel, checkIn, checkOut, roomChosen.getPrice(), "pending", "card");
     }
+
+
 }
