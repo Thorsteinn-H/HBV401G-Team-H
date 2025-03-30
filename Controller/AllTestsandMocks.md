@@ -51,7 +51,8 @@ public class BookingController {
         }
         return null; // or throw an exception if not found
     }
-}   ```
+}
+ ```
 
 ## CustomerController.java 
 ```
@@ -99,7 +100,8 @@ public class CustomerController {
     }
 
 
-}   ```
+}
+ ```
 
 ## HotelController.java 
 ```
@@ -213,7 +215,8 @@ public class HotelController {
         hotels.removeIf(hotel -> hotel.getName().equals(name));
     }
 
-}   ```
+}
+ ```
 
 # Model 
 
@@ -321,7 +324,8 @@ public class Booking {
     }
 
 
-}  ```
+}
+ ```
 
 ## Customer.java
 ```
@@ -375,7 +379,8 @@ public class Customer {
         return password.equals(input);
     }
 
-}   ```
+}
+ ```
 
 ## Hotel.java
 ```
@@ -466,7 +471,8 @@ public class Hotel {
     }
 
 
-}  ```
+}
+```
 
 ## Room.java
 ```
@@ -521,7 +527,8 @@ public class Room {
         return imagesURL;
     }
 
-}   ```
+}
+ ```
 
 
 ## TestCases.java
@@ -627,7 +634,8 @@ public class mockCustomerDB {
         return matched;
     }
 
-}  ```
+}
+ ```
 
 
 
