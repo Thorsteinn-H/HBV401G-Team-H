@@ -20,6 +20,7 @@ public class Booking {
     private String status;
     private String paymentMethod;
 
+    // builds a new booking objects based on following details
     public Booking(Integer id, Customer customer, Integer room, Hotel hotel, Date checkIn, Date checkOut, Integer price, String status, String paymentMethod) {
         this.id = id;
         this.customer = customer;
@@ -40,8 +41,9 @@ public class Booking {
         return customer;
     }
 
+    // retrieves the room object connected with this booking
     public Room getRoom() {
-        return hotel.getRoomByID(room);
+        return hotel.getRoomByID(room);  // gets room from hotel by id
     }
 
 
@@ -69,26 +71,30 @@ public class Booking {
         return paymentMethod;
     }
 
+    // cancels this booking
     public void cancelBooking() {
         status = "cancelled";
     }
 
+    // processes a refund based on the payment method used
     public void refund() {
-        if(paymentMethod.equals("card")) {
+        if (paymentMethod.equals("card")) {
             // refund through card
-        } else if(paymentMethod.equals("cash")) {
+        } else if (paymentMethod.equals("cash")) {
             // refund through cash
         }
     }
 
+    // process payment for this booking
     public void processPayment(String paymentMethod, Integer price) {
-        if(paymentMethod.equals("card")) {
+        if (paymentMethod.equals("card")) {
             // process payment through card
-        } else if(paymentMethod.equals("cash")) {
+        } else if (paymentMethod.equals("cash")) {
             // process payment through cash
         }
     }
 
+    // method to create and return a new booking
     public static Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Hotel hotel, Room roomChosen) {
         return new Booking(1, customer, roomChosen.getId(), hotel, checkIn, checkOut, roomChosen.getPrice(), "pending", "card");
     }

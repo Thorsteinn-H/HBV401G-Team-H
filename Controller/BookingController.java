@@ -1,11 +1,14 @@
 package Controller;
+
 import Model.Booking;
 import Model.Customer;
 import Model.Hotel;
 import Model.Room;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 /**
  * Nafn : Þorsteinn H. Erlendsson
  * Tölvupóstur: the85@hi.is
@@ -19,17 +22,19 @@ public class BookingController {
         return new ArrayList<>(bookings);
     }
 
+    // creates new booking based on given details
     public Booking createNewBooking(Customer customer, Date checkIn, Date checkOut, Hotel hotel, Room roomChosen) {
         Booking newBooking = Booking.bookHotel(customer, checkIn, checkOut, hotel, roomChosen);
         bookings.add(newBooking);
         return newBooking;
     }
 
-
+    // removes specified booking from the list
     public boolean removeBooking(Booking booking) {
         return bookings.remove(booking);
     }
 
+    // searches for a booking by booking id
     public Booking getBooking(int id) {
         for (Booking booking : bookings) {
             if (booking.getId() == id) {

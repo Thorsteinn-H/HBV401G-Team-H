@@ -15,6 +15,7 @@ public class HotelController {
 
     private List<Hotel> hotels = new ArrayList<>();
 
+    // retrieves hotel by name
     public Hotel getHotel(String name) {
         for (Hotel hotel : hotels) {
             if (hotel.getName().equals(name)) {
@@ -24,6 +25,7 @@ public class HotelController {
         return null;
     }
 
+    // searches for hotels that match a given search string
     public List<Hotel> searchHotels(String string) {
         List<Hotel> matching = new ArrayList<>();
         for (Hotel hotel : hotels) {
@@ -34,14 +36,17 @@ public class HotelController {
         return matching;
     }
 
+    // retrieves a list of all hotels managed by this controller
     public List<Hotel> getAllHotels() {
         return new ArrayList<>(hotels);
     }
 
+    // adds hotel to the list
     public void addHotel(Hotel hotel) {
         hotels.add(hotel);
     }
 
+    // removes a hotel off the list
     public void removeHotel(String name) {
         hotels.removeIf(hotel -> hotel.getName().equals(name));
     }
