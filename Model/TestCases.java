@@ -20,7 +20,7 @@ public class TestCases {
     private Customer customer;
 
 
-    @BeforeEach // set up ojects before every test
+    @BeforeEach // sets up ojects before every test
     public void setUp() {
         customerController = new CustomerController();
         customer = new Customer("username", "realName", "password", "email", "phoneNumber");
