@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hopur7h.hotels.hopur7h.view.MainViewController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Label layoutX="50.0" layoutY="50.0" text="Welcome to the Hotel App"/>
+    <TextField fx:id="nameField" layoutX="50.0" layoutY="100.0" promptText="Enter your name"/>
+    <Button layoutX="50.0" layoutY="150.0" text="Submit" onAction="#handleSubmitAction"/>
+
+</AnchorPane>
