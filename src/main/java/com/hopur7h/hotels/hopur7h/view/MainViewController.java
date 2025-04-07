@@ -4,9 +4,14 @@ import com.hopur7h.hotels.hopur7h.controller.HotelController;
 import com.hopur7h.hotels.hopur7h.model.Hotel;
 import com.hopur7h.hotels.hopur7h.model.Room;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,17 +20,28 @@ public class MainViewController {
 
     @FXML
     private ListView<String> hotelListView;
-
     @FXML
     private TextField searchField;
 
     private HotelController hotelController = new HotelController();
 
+
     @FXML
     public void initialize() {
         addTemporaryHotels();
         showAllHotels();
+
+        hotelListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // double click
+                int selectedIndex = hotelListView.getSelectionModel().getSelectedIndex();
+                if (selectedIndex >= 0) {
+                    Hotel selectedHotel = hotelController.getAllHotels().get(selectedIndex);
+                    openHotelDetails(selectedHotel);
+                }
+            }
+        });
     }
+
 
     private void addTemporaryHotels() {
         List<String> amenities = List.of("Free WiFi", "Breakfast included", "Hot tub");
@@ -56,6 +72,7 @@ public class MainViewController {
         return hotel.getName() + " - " + hotel.getLocation() + " | " + hotel.getAmenities();
     }
 
+
     @FXML
     private void onSearchClick() {
         String query = searchField.getText().trim();
@@ -64,6 +81,23 @@ public class MainViewController {
         List<Hotel> results = hotelController.searchHotels(query);
         for (Hotel hotel : results) {
             hotelListView.getItems().add(formatHotelInfo(hotel));
+        }
+    }
+
+    private void openHotelDetails(Hotel hotel) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml"));
+            Parent root = loader.load();
+
+            HotelDetailedController controller = loader.getController();
+            controller.setHotel(hotel);
+
+            Stage stage = new Stage();
+            stage.setTitle("Hotel Details");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
