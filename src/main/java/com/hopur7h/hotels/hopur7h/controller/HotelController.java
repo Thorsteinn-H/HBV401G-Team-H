@@ -29,8 +29,11 @@ public class HotelController {
     // searches for hotels that match a given search string
     public List<Hotel> searchHotels(String string) {
         List<Hotel> matching = new ArrayList<>();
+        String query = string.toLowerCase();
+
         for (Hotel hotel : hotels) {
-            if (hotel.getName().contains(string) || hotel.getLocation().contains(string)) {
+            if (hotel.getName().toLowerCase().contains(query) ||
+                    hotel.getLocation().toLowerCase().contains(query)) {
                 matching.add(hotel);
             }
         }
