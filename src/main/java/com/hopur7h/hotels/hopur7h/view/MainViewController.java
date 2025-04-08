@@ -1,9 +1,9 @@
 package com.hopur7h.hotels.hopur7h.view;
 
+import com.hopur7h.hotels.hopur7h.controller.CustomerController;
 import com.hopur7h.hotels.hopur7h.controller.HotelController;
 import com.hopur7h.hotels.hopur7h.model.Customer;
 import com.hopur7h.hotels.hopur7h.model.Hotel;
-import com.hopur7h.hotels.hopur7h.model.Room;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +25,7 @@ public class MainViewController {
     private TextField searchField;
 
     private HotelController hotelController = new HotelController();
+    private CustomerController customerController = new CustomerController();
 
     private Customer placeholderCustomer;
 
@@ -32,8 +33,14 @@ public class MainViewController {
     public void initialize() {
         addTemporaryHotels();
         showAllHotels();
-        placeholderCustomer = new Customer(1, "demoUser", "Demo User", "pass123", "demo@placeholder.com", "1234567890");
-
+        Customer existing = customerController.getCustomer("demoUser");
+        if (existing == null) {
+            Customer demo = new Customer(1, "demoUser", "Demo User", "pass123", "demo@placeholder.com", "1234567890");
+            customerController.addCustomer(demo);
+            placeholderCustomer = customerController.getCustomer("demoUser");
+        } else {
+            placeholderCustomer = existing;
+        }
         hotelListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // double click
                 int selectedIndex = hotelListView.getSelectionModel().getSelectedIndex();
@@ -55,14 +62,12 @@ public class MainViewController {
         availableDates.add(today);
         availableDates.add(tomorrow);
 
-        List<Room> rooms = new ArrayList<>();
-        rooms.add(new Room(1, availableDates, 120, 1, "room1.jpg"));
-        rooms.add(new Room(2, availableDates, 200, 2, "room2.jpg"));
 
-        hotelController.addHotel(new Hotel("Reykjavik Inn", "Reykjavik", amenities, "Comfortable city stay.", rooms, "img1.jpg"));
-        hotelController.addHotel(new Hotel("Northern Lights Lodge", "Akureyri", amenities, "Watch the aurora.", rooms, "img2.jpg"));
-        hotelController.addHotel(new Hotel("Glacier Stay", "Hofn", amenities, "Stay near Vatnajökull glacier.", rooms, "img3.jpg"));
+        hotelController.addHotel(new Hotel("Reykjavik Inn", "Reykjavik", amenities, "Comfortable city stay.", "img1.jpg"));
+        hotelController.addHotel(new Hotel("Northern Lights Lodge", "Akureyri", amenities, "Watch the aurora.", "img2.jpg"));
+        hotelController.addHotel(new Hotel("Glacier Stay", "Hofn", amenities, "Stay near Vatnajökull glacier.", "img3.jpg"));
     }
+
 
     private void showAllHotels() {
         hotelListView.getItems().clear();

@@ -11,37 +11,41 @@ public class DatabaseInit {
 
             // Create Customer table
             statement.execute("""
-                        CREATE TABLE IF NOT EXISTS customers (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            name TEXT NOT NULL,
-                            email TEXT UNIQUE NOT NULL
-                        );
+                    CREATE TABLE IF NOT EXISTS customers (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        username TEXT UNIQUE NOT NULL,
+                        realName TEXT NOT NULL,
+                        password TEXT NOT NULL,
+                        email TEXT UNIQUE NOT NULL,
+                        phoneNumber TEXT
+                    );
                     """);
 
             // Create Hotel table
             statement.execute("""
-                        CREATE TABLE IF NOT EXISTS hotels (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            name TEXT NOT NULL,
-                            location TEXT NOT NULL,
-                            amenities TEXT,
-                            description TEXT,
-                            imagesURL TEXT
-                        );
+                    CREATE TABLE IF NOT EXISTS hotels (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name TEXT NOT NULL,
+                        location TEXT NOT NULL,
+                        amenities TEXT,
+                        description TEXT,
+                        imagesURL TEXT
+                    );
                     """);
 
             // Create Booking table
             statement.execute("""
-                        CREATE TABLE IF NOT EXISTS bookings (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            customer_id INTEGER NOT NULL,
-                            hotel_id INTEGER NOT NULL,
-                            room_number TEXT NOT NULL,
-                            check_in_date TEXT NOT NULL,
-                            check_out_date TEXT NOT NULL,
-                            FOREIGN KEY (customer_id) REFERENCES customers(id),
-                            FOREIGN KEY (hotel_id) REFERENCES hotels(id)
-                        );
+                    CREATE TABLE IF NOT EXISTS bookings (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        customer_id INTEGER NOT NULL,
+                        hotel_id INTEGER NOT NULL,
+                        check_in_date DATE NOT NULL,
+                        check_out_date DATE NOT NULL,
+                        status TEXT NOT NULL,
+                        payment_method TEXT NOT NULL,
+                        FOREIGN KEY (customer_id) REFERENCES customers(id),
+                        FOREIGN KEY (hotel_id) REFERENCES hotels(id)
+                    );
                     """);
 
             System.out.println("SQLite tables created successfully.");

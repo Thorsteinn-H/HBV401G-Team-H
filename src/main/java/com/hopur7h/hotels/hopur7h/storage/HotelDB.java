@@ -103,7 +103,6 @@ public class HotelDB {
         return hotels;
     }
 
-
     public void deleteAllHotels() {
         String sql = "DELETE FROM hotels";
         try (Connection conn = DatabaseConnector.connect();
@@ -114,14 +113,12 @@ public class HotelDB {
         }
     }
 
-
     private Hotel mapResultSetToHotel(ResultSet rs) throws SQLException {
         Hotel hotel = new Hotel(
                 rs.getString("name"),
                 rs.getString("location"),
                 Arrays.asList(rs.getString("amenities").split(",")),
                 rs.getString("description"),
-                new ArrayList<>(),
                 rs.getString("imagesURL")
         );
         hotel.setId(rs.getInt("id"));

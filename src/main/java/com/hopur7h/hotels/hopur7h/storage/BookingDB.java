@@ -14,26 +14,41 @@ public class BookingDB {
     private final CustomerDB customerDB = new CustomerDB();
     private final HotelDB hotelDB = new HotelDB();
 
-    public void addBooking(Customer customer, Hotel hotel, int roomId, Date checkIn, Date checkOut, int price, String status, String paymentMethod) {
-        String sql = "INSERT INTO bookings(customer_id, hotel_id, room_id, check_in_date, check_out_date, price, status, payment_method) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public int addBooking(Customer customer, Hotel hotel, Date checkIn, Date checkOut, String status, String paymentMethod) {
+        String sql = "INSERT INTO bookings(customer_id, hotel_id, check_in_date, check_out_date, status, payment_method) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnector.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, customer.getId());
             ps.setInt(2, hotel.getId());
-            ps.setInt(3, roomId);
-            ps.setDate(4, new java.sql.Date(checkIn.getTime()));
-            ps.setDate(5, new java.sql.Date(checkOut.getTime()));
-            ps.setInt(6, price);
-            ps.setString(7, status);
-            ps.setString(8, paymentMethod);
-            ps.executeUpdate();
+            ps.setDate(3, new java.sql.Date(checkIn.getTime()));
+            ps.setDate(4, new java.sql.Date(checkOut.getTime()));
+            ps.setString(5, status);
+            ps.setString(6, paymentMethod);
+
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating booking failed, no rows affected.");
+            }
+
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()")) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                } else {
+                    throw new SQLException("Failed to retrieve booking ID.");
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println("Add booking failed: " + e.getMessage());
         }
+
+        return -1;
     }
+
 
     public List<Booking> getAllBookings() {
         List<Booking> bookings = new ArrayList<>();
@@ -132,11 +147,10 @@ public class BookingDB {
         return new Booking(
                 rs.getInt("id"),
                 customer,
-                rs.getInt("room_id"),
+                -1,
                 hotel,
                 rs.getDate("check_in_date"),
                 rs.getDate("check_out_date"),
-                rs.getInt("price"),
                 rs.getString("status"),
                 rs.getString("payment_method")
         );
