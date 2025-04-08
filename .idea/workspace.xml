@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da804ada-c3c0-4e6d-9407-5a162d4fdee4" name="Changes" comment="added images, ability to check how many rooms are available">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/hotel.jpeg" afterDir="false" />
+    <list default="true" id="da804ada-c3c0-4e6d-9407-5a162d4fdee4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Hotel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

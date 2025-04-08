@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -23,6 +24,8 @@ public class MainViewController {
     private ListView<String> hotelListView;
     @FXML
     private TextField searchField;
+    @FXML
+    private Label currentUserLabel;
 
     private HotelController hotelController = new HotelController();
     private CustomerController customerController = new CustomerController();
@@ -41,6 +44,8 @@ public class MainViewController {
         } else {
             placeholderCustomer = existing;
         }
+        currentUserLabel.setText("Logged in as: " + placeholderCustomer.getUsername());
+
         hotelListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // double click
                 int selectedIndex = hotelListView.getSelectionModel().getSelectedIndex();

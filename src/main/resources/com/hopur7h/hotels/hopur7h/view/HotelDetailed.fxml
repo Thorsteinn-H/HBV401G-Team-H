@@ -6,6 +6,8 @@
       fx:controller="com.hopur7h.hotels.hopur7h.view.HotelDetailedController"
       spacing="10"
       alignment="CENTER">
+    <Label fx:id="currentUserLabel" alignment="TOP_RIGHT" style="-fx-font-size: 12px; -fx-font-style: italic;"/>
+
     <ImageView fx:id="hotelImage" fitHeight="200" fitWidth="300" preserveRatio="true"/>
 
     <DatePicker fx:id="checkInPicker"/>

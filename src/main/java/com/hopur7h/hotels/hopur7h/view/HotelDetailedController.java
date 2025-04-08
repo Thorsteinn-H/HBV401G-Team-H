@@ -20,6 +20,8 @@ public class HotelDetailedController {
 
     @FXML
     private Label hotelName;
+    @FXML
+    private Label currentUserLabel;
 
     @FXML
     private Label hotelDescription;
@@ -56,7 +58,9 @@ public class HotelDetailedController {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+        currentUserLabel.setText("Logged in as: " + customer.getUsername());
     }
+
 
     @FXML
     private void handleCheckAvailability() {
