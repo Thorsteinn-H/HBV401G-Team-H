@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="da804ada-c3c0-4e6d-9407-5a162d4fdee4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/BookingDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/BookingDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/CustomerDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/CustomerDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/DatabaseInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/DatabaseInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/HotelDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/HotelDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,6 +154,7 @@
     <MESSAGE value="Added functionality to basic UI, placeholder hotels + list of all hotels with search feature for both name and location" />
     <MESSAGE value="Added a detailed individual hotel view and screen." />
     <MESSAGE value="Implemented SQLITE and removed mock databases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented SQLITE and removed mock databases" />
+    <MESSAGE value="Added additional database functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added additional database functions" />
   </component>
 </project>

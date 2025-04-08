@@ -1,6 +1,7 @@
 package com.hopur7h.hotels.hopur7h.view;
 
 import com.hopur7h.hotels.hopur7h.controller.HotelController;
+import com.hopur7h.hotels.hopur7h.model.Customer;
 import com.hopur7h.hotels.hopur7h.model.Hotel;
 import com.hopur7h.hotels.hopur7h.model.Room;
 import javafx.fxml.FXML;
@@ -25,10 +26,13 @@ public class MainViewController {
 
     private HotelController hotelController = new HotelController();
 
+    private Customer placeholderCustomer;
 
     @FXML
     public void initialize() {
+        addTemporaryHotels();
         showAllHotels();
+        placeholderCustomer = new Customer(1, "demoUser", "Demo User", "pass123", "demo@placeholder.com", "1234567890");
 
         hotelListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // double click
@@ -90,6 +94,7 @@ public class MainViewController {
 
             HotelDetailedController controller = loader.getController();
             controller.setHotel(hotel);
+            controller.setCustomer(placeholderCustomer);
 
             Stage stage = new Stage();
             stage.setTitle("Hotel Details");
@@ -99,4 +104,5 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
+
 }
