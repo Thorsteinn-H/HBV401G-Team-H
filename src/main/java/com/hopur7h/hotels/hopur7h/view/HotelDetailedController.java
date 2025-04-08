@@ -7,6 +7,8 @@ import com.hopur7h.hotels.hopur7h.model.Hotel;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -21,6 +23,9 @@ public class HotelDetailedController {
 
     @FXML
     private Label hotelDescription;
+
+    @FXML
+    private ImageView hotelImage;
 
     @FXML
     private Label availableRooms;
@@ -38,7 +43,16 @@ public class HotelDetailedController {
         this.hotel = hotel;
         hotelName.setText(hotel.getName() + " | " + hotel.getId());
         hotelDescription.setText(hotel.getDescription());
+
+        try {
+            String imagePath = "/images/" + hotel.getImagesURL();
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            hotelImage.setImage(image);
+        } catch (Exception e) {
+            System.out.println("Image not found for hotel: " + hotel.getImagesURL());
+        }
     }
+
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -54,12 +68,13 @@ public class HotelDetailedController {
             return;
         }
 
-        if (hotel.isAvailable(checkIn, checkOut)) {
-            availableRooms.setText("Available for selected dates.");
+        int available = hotel.getAvailableRooms(checkIn, checkOut);
+        if (available > 0) {
+            availableRooms.setText("Available rooms: " + available);
         } else {
-            List<Date> unavailable = hotel.getUnavailableDates(checkIn, checkOut);
-            availableRooms.setText("Unavailable on: " + unavailable.toString());
+            availableRooms.setText("No rooms available for selected dates.");
         }
+
     }
 
     @FXML

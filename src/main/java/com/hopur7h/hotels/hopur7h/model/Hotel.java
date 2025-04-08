@@ -86,6 +86,38 @@ public class Hotel {
         return true;
     }
 
+    public int getAvailableRooms(Date checkIn, Date checkOut) {
+        int minAvailable = MAX_ROOMS_PER_DAY;
+
+        try (Connection conn = DatabaseConnector.connect()) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(checkIn);
+
+            while (!calendar.getTime().after(checkOut)) {
+                Date date = truncateTime(calendar.getTime());
+                String sql = "SELECT COUNT(*) FROM bookings WHERE hotel_id = ? AND ? BETWEEN check_in_date AND check_out_date";
+
+                try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                    ps.setInt(1, id);
+                    ps.setDate(2, new java.sql.Date(date.getTime()));
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (rs.next()) {
+                            int booked = rs.getInt(1);
+                            int available = MAX_ROOMS_PER_DAY - booked;
+                            if (available < minAvailable) {
+                                minAvailable = available;
+                            }
+                        }
+                    }
+                }
+                calendar.add(Calendar.DATE, 1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Room availability check failed: " + e.getMessage());
+        }
+
+        return minAvailable;
+    }
 
     public List<Date> getUnavailableDates(Date checkIn, Date checkOut) {
         List<Date> unavailable = new ArrayList<>();

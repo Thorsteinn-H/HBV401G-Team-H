@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.hopur7h.hotels.hopur7h.view.HotelDetailedController"
       spacing="10"
       alignment="CENTER">
+    <ImageView fx:id="hotelImage" fitHeight="200" fitWidth="300" preserveRatio="true"/>
+
     <DatePicker fx:id="checkInPicker"/>
     <DatePicker fx:id="checkOutPicker"/>
     <Button text="Check Availability" onAction="#handleCheckAvailability"/>
     <Button text="Book Now" onAction="#handleBookNow"/>
-    <Label fx:id="availableRooms"/>
 
     <Button text="Print All Bookings" onAction="#handlePrintBookings"/>
 

@@ -63,9 +63,10 @@ public class MainViewController {
         availableDates.add(tomorrow);
 
 
-        hotelController.addHotel(new Hotel("Reykjavik Inn", "Reykjavik", amenities, "Comfortable city stay.", "img1.jpg"));
-        hotelController.addHotel(new Hotel("Northern Lights Lodge", "Akureyri", amenities, "Watch the aurora.", "img2.jpg"));
-        hotelController.addHotel(new Hotel("Glacier Stay", "Hofn", amenities, "Stay near Vatnajökull glacier.", "img3.jpg"));
+        hotelController.addHotel(new Hotel("Reykjavik Inn", "Reykjavik", amenities, "Comfortable city stay.", "hotel.jpeg"));
+        hotelController.addHotel(new Hotel("Northern Lights Lodge", "Akureyri", amenities, "Watch the aurora.", "hotel.jpeg"));
+        hotelController.addHotel(new Hotel("Glacier Stay", "Hofn", amenities, "Stay near Vatnajökull glacier.", "hotel.jpeg"));
+
     }
 
 
