@@ -111,7 +111,7 @@ public class HotelDetailedController {
         BookingController bookingController = new BookingController();
         List<Booking> bookings = bookingController.getAllBookings();
 
-        System.out.println("=== All Bookings ===");
+        System.out.println("All Bookings:");
         for (Booking booking : bookings) {
             System.out.println("Booking ID: " + booking.getId()
                     + ", Customer: " + booking.getCustomer().getUsername()

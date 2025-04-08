@@ -7,26 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDB {
-
-    public CustomerDB() {
-        createTableIfNotExists();
-    }
-
-    private void createTableIfNotExists() {
-        String sql = "CREATE TABLE IF NOT EXISTS customers (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "username TEXT UNIQUE NOT NULL, " +
-                "realName TEXT NOT NULL, " +
-                "password TEXT NOT NULL, " +
-                "email TEXT UNIQUE NOT NULL, " +
-                "phoneNumber TEXT)";
-        try (Connection conn = DatabaseConnector.connect();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println("Failed to create table: " + e.getMessage());
-        }
-    }
+    /**
+     * public CustomerDB() {
+     * createTableIfNotExists();
+     * }
+     * <p>
+     * private void createTableIfNotExists() {
+     * String sql = "CREATE TABLE IF NOT EXISTS customers (" +
+     * "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+     * "username TEXT UNIQUE NOT NULL, " +
+     * "realName TEXT NOT NULL, " +
+     * "password TEXT NOT NULL, " +
+     * "email TEXT UNIQUE NOT NULL, " +
+     * "phoneNumber TEXT)";
+     * try (Connection conn = DatabaseConnector.connect();
+     * Statement stmt = conn.createStatement()) {
+     * stmt.execute(sql);
+     * } catch (SQLException e) {
+     * System.out.println("Failed to create table: " + e.getMessage());
+     * }
+     * }
+     **/
 
     public void addCustomer(String username, String realName, String password, String email, String phoneNumber) {
         String sql = "INSERT INTO customers(username, realName, password, email, phoneNumber) VALUES(?,?,?,?,?)";

@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,11 +60,8 @@ public class MainViewController {
     private void addTemporaryHotels() {
         List<String> amenities = List.of("Free WiFi", "Breakfast included", "Hot tub");
 
-        List<Date> availableDates = new ArrayList<>();
         Date today = new Date();
         Date tomorrow = new Date(today.getTime() + 86400000L);
-        availableDates.add(today);
-        availableDates.add(tomorrow);
 
 
         hotelController.addHotel(new Hotel("Reykjavik Inn", "Reykjavik", amenities, "Comfortable city stay.", "hotel.jpeg"));
@@ -108,7 +104,7 @@ public class MainViewController {
             controller.setCustomer(placeholderCustomer);
 
             Stage stage = new Stage();
-            stage.setTitle("Hotel Details");
+            stage.setTitle(hotel.getName());
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

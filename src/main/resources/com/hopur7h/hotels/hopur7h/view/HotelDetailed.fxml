@@ -14,13 +14,12 @@
     <DatePicker fx:id="checkOutPicker"/>
     <Button text="Check Availability" onAction="#handleCheckAvailability"/>
     <Button text="Book Now" onAction="#handleBookNow"/>
-
+    <!--
     <Button text="Print All Bookings" onAction="#handlePrintBookings"/>
-
+    -->
 
     <Label fx:id="hotelName" style="-fx-font-size: 20px;"/>
     <Label fx:id="hotelDescription"/>
     <Label fx:id="availableRooms"/>
-    <Button text="Book Now" onAction="#handleBookNow"/>
 </VBox>
 

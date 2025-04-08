@@ -154,7 +154,6 @@ public class Hotel {
         return cal.getTime();
     }
 
-    // Simplified booking logic
     public Booking bookHotel(Customer customer, Date checkIn, Date checkOut) {
         if (!isAvailable(checkIn, checkOut)) {
             throw new IllegalStateException("Some dates are fully booked.");
