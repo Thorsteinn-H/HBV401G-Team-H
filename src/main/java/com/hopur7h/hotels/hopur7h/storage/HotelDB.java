@@ -1,7 +1,6 @@
 package com.hopur7h.hotels.hopur7h.storage;
 
 import com.hopur7h.hotels.hopur7h.model.Hotel;
-import com.hopur7h.hotels.hopur7h.model.Room;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,13 +12,13 @@ public class HotelDB {
     public void addHotel(String name, String location, List<String> amenities, String description, String imagesURL) {
         String sql = "INSERT INTO hotels(name, location, amenities, description, imagesURL) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnector.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, name);
-            pstmt.setString(2, location);
-            pstmt.setString(3, String.join(",", amenities));
-            pstmt.setString(4, description);
-            pstmt.setString(5, imagesURL);
-            pstmt.executeUpdate();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setString(2, location);
+            ps.setString(3, String.join(",", amenities));
+            ps.setString(4, description);
+            ps.setString(5, imagesURL);
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Add hotel failed: " + e.getMessage());
         }
@@ -33,16 +32,7 @@ public class HotelDB {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                Hotel hotel = new Hotel(
-                        rs.getString("name"),
-                        rs.getString("location"),
-                        Arrays.asList(rs.getString("amenities").split(",")),
-                        rs.getString("description"),
-                        new ArrayList<Room>(),
-                        rs.getString("imagesURL")
-                );
-                hotel.setId(rs.getInt("id"));
-                hotels.add(hotel);
+                hotels.add(mapResultSetToHotel(rs));
             }
 
         } catch (SQLException e) {
@@ -55,21 +45,11 @@ public class HotelDB {
     public Hotel getHotelById(int id) {
         String sql = "SELECT * FROM hotels WHERE id = ?";
         try (Connection conn = DatabaseConnector.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                Hotel hotel = new Hotel(
-                        rs.getString("name"),
-                        rs.getString("location"),
-                        Arrays.asList(rs.getString("amenities").split(",")),
-                        rs.getString("description"),
-                        new ArrayList<Room>(),
-                        rs.getString("imagesURL")
-                );
-                hotel.setId(rs.getInt("id"));
-                return hotel;
+                return mapResultSetToHotel(rs);
             }
         } catch (SQLException e) {
             System.out.println("Get hotel by ID failed: " + e.getMessage());
@@ -80,35 +60,71 @@ public class HotelDB {
     public void deleteHotel(int id) {
         String sql = "DELETE FROM hotels WHERE id = ?";
         try (Connection conn = DatabaseConnector.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Delete hotel failed: " + e.getMessage());
         }
     }
 
-    public Hotel getHotelWithRoomsById(int id) {
-        String sql = "SELECT * FROM hotels WHERE id = ?";
+    public void updateHotel(int id, String name, String location, List<String> amenities, String description, String imagesURL) {
+        String sql = "UPDATE hotels SET name = ?, location = ?, amenities = ?, description = ?, imagesURL = ? WHERE id = ?";
         try (Connection conn = DatabaseConnector.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                Hotel hotel = new Hotel(
-                        rs.getString("name"),
-                        rs.getString("location"),
-                        Arrays.asList(rs.getString("amenities").split(",")),
-                        rs.getString("description"),
-                        new ArrayList<Room>(), // TODO: fetch actual rooms
-                        rs.getString("imagesURL")
-                );
-                hotel.setId(rs.getInt("id"));
-                return hotel;
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setString(2, location);
+            ps.setString(3, String.join(",", amenities));
+            ps.setString(4, description);
+            ps.setString(5, imagesURL);
+            ps.setInt(6, id);
+            int rows = ps.executeUpdate();
+            System.out.println(rows > 0 ? "Hotel updated." : "Hotel not found.");
+        } catch (SQLException e) {
+            System.out.println("Update hotel failed: " + e.getMessage());
+        }
+    }
+
+    public List<Hotel> getHotelsByName(String name) {
+        List<Hotel> hotels = new ArrayList<>();
+        String sql = "SELECT * FROM hotels WHERE LOWER(name) LIKE LOWER(?)";
+
+        try (Connection conn = DatabaseConnector.connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                hotels.add(mapResultSetToHotel(rs));
             }
         } catch (SQLException e) {
-            System.out.println("Get hotel with rooms failed: " + e.getMessage());
+            System.out.println("Search hotel by name failed: " + e.getMessage());
         }
-        return null;
+
+        return hotels;
+    }
+
+
+    public void deleteAllHotels() {
+        String sql = "DELETE FROM hotels";
+        try (Connection conn = DatabaseConnector.connect();
+             Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.out.println("Delete all hotels failed: " + e.getMessage());
+        }
+    }
+
+
+    private Hotel mapResultSetToHotel(ResultSet rs) throws SQLException {
+        Hotel hotel = new Hotel(
+                rs.getString("name"),
+                rs.getString("location"),
+                Arrays.asList(rs.getString("amenities").split(",")),
+                rs.getString("description"),
+                new ArrayList<>(),
+                rs.getString("imagesURL")
+        );
+        hotel.setId(rs.getInt("id"));
+        return hotel;
     }
 }

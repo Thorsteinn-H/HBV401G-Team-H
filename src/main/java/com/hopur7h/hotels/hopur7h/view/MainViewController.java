@@ -28,7 +28,6 @@ public class MainViewController {
 
     @FXML
     public void initialize() {
-        addTemporaryHotels();
         showAllHotels();
 
         hotelListView.setOnMouseClicked(event -> {

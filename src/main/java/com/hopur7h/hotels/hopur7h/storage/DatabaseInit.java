@@ -7,10 +7,10 @@ import java.sql.Statement;
 public class DatabaseInit {
 
     public static void initDatabase() {
-        try (Connection conn = DatabaseConnector.connect(); Statement stmt = conn.createStatement()) {
+        try (Connection conn = DatabaseConnector.connect(); Statement statement = conn.createStatement()) {
 
             // Create Customer table
-            stmt.execute("""
+            statement.execute("""
                         CREATE TABLE IF NOT EXISTS customers (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
@@ -19,7 +19,7 @@ public class DatabaseInit {
                     """);
 
             // Create Hotel table
-            stmt.execute("""
+            statement.execute("""
                         CREATE TABLE IF NOT EXISTS hotels (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
@@ -31,7 +31,7 @@ public class DatabaseInit {
                     """);
 
             // Create Booking table
-            stmt.execute("""
+            statement.execute("""
                         CREATE TABLE IF NOT EXISTS bookings (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             customer_id INTEGER NOT NULL,
