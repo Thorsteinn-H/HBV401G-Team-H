@@ -20,10 +20,9 @@ public class Booking {
     private String status;
     private String paymentMethod;
 
-    public Booking(Integer id, Customer customer, Integer room, Hotel hotel, Date checkIn, Date checkOut, String status, String paymentMethod) {
+    public Booking(Integer id, Customer customer, Hotel hotel, Date checkIn, Date checkOut, String status, String paymentMethod) {
         this.id = id;
         this.customer = customer;
-        this.room = room;
         this.hotel = hotel;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -87,8 +86,8 @@ public class Booking {
      **/
 
     // method to create and return a new booking
-    public static Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Hotel hotel, Room roomChosen) {
-        return new Booking(1, customer, roomChosen.getId(), hotel, checkIn, checkOut, "pending", "card");
+    public static Booking bookHotel(Customer customer, Date checkIn, Date checkOut, Hotel hotel) {
+        return new Booking(1, customer, hotel, checkIn, checkOut, "pending", "card");
     }
 
 

@@ -160,6 +160,6 @@ public class Hotel {
             throw new IllegalStateException("Some dates are fully booked.");
         }
         bookDates(checkIn, checkOut);
-        return new Booking(1, customer, -1, this, checkIn, checkOut, "pending", "card");
+        return new Booking(1, customer, this, checkIn, checkOut, "pending", "card");
     }
 }

@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="da804ada-c3c0-4e6d-9407-5a162d4fdee4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/controller/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/controller/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/BookingDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/BookingDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +168,7 @@
     <MESSAGE value="Passing customer to detailed view (placeholder only for now)" />
     <MESSAGE value="Changed booking functionality, added persistent booking, temporary placeholder user. Date based booking and mostly removed Room class to simplify to pure number of rooms available;" />
     <MESSAGE value="added images, ability to check how many rooms are available" />
-    <option name="LAST_COMMIT_MESSAGE" value="added images, ability to check how many rooms are available" />
+    <MESSAGE value="added current user label" />
+    <option name="LAST_COMMIT_MESSAGE" value="added current user label" />
   </component>
 </project>

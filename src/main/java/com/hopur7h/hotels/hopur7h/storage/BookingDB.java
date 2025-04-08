@@ -147,7 +147,6 @@ public class BookingDB {
         return new Booking(
                 rs.getInt("id"),
                 customer,
-                -1,
                 hotel,
                 rs.getDate("check_in_date"),
                 rs.getDate("check_out_date"),

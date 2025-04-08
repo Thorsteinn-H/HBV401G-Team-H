@@ -39,7 +39,7 @@ public class BookingController {
             return null;
         }
 
-        return new Booking(generatedId, customer, -1, hotel, checkIn, checkOut, "pending", "card");
+        return new Booking(generatedId, customer, hotel, checkIn, checkOut, "pending", "card");
     }
 
     public boolean removeBooking(Booking booking) {
