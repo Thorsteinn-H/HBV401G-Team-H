@@ -1,21 +1,16 @@
 package com.hopur7h.hotels.hopur7h.model;
 
-/**
- * Nafn : Þorsteinn H. Erlendsson
- * Tölvupóstur: the85@hi.is
- * Lýsing:
- **/
 public class Customer {
 
-
+    private int id;
     private String username;
     private String realName;
     private String password;
     private String email;
     private String phoneNumber;
 
-    // constructs a new customer object with details
-    public Customer(String username, String realName, String password, String email, String phoneNumber) {
+    public Customer(int id, String username, String realName, String password, String email, String phoneNumber) {
+        this.id = id;
         this.username = username;
         this.realName = realName;
         this.password = password;
@@ -23,29 +18,31 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    // retrieves username of the customer
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
 
-    // retrieves real name of the customer
     public String getName() {
         return realName;
     }
 
-    // retrieves the email address of the customer
     public String getEmail() {
         return email;
     }
 
-    // retrieves the phone number of the customer
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    // checks if given input matches the customer passwords
     public boolean verifyPassword(String input) {
         return password.equals(input);
     }
-
 }

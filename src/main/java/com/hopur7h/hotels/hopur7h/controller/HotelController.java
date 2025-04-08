@@ -1,25 +1,25 @@
 package com.hopur7h.hotels.hopur7h.controller;
 
-
 import com.hopur7h.hotels.hopur7h.model.Hotel;
+import com.hopur7h.hotels.hopur7h.storage.HotelDB;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Nafn : Þorsteinn H. Erlendsson
+ * Nafn : Þjórsteinn H. Erlendsson
  * Tölvupóstur: the85@hi.is
  * Lýsing:
  **/
 public class HotelController {
 
-
-    private List<Hotel> hotels = new ArrayList<>();
+    private HotelDB hotelDB = new HotelDB();
 
     // retrieves hotel by name
     public Hotel getHotel(String name) {
-        for (Hotel hotel : hotels) {
-            if (hotel.getName().equals(name)) {
+        List<Hotel> allHotels = hotelDB.getAllHotels();
+        for (Hotel hotel : allHotels) {
+            if (hotel.getName().equalsIgnoreCase(name)) {
                 return hotel;
             }
         }
@@ -31,7 +31,7 @@ public class HotelController {
         List<Hotel> matching = new ArrayList<>();
         String query = string.toLowerCase();
 
-        for (Hotel hotel : hotels) {
+        for (Hotel hotel : hotelDB.getAllHotels()) {
             if (hotel.getName().toLowerCase().contains(query) ||
                     hotel.getLocation().toLowerCase().contains(query)) {
                 matching.add(hotel);
@@ -42,17 +42,25 @@ public class HotelController {
 
     // retrieves a list of all hotels managed by this controller
     public List<Hotel> getAllHotels() {
-        return new ArrayList<>(hotels);
+        return hotelDB.getAllHotels();
     }
 
-    // adds hotel to the list
+    // adds hotel to the database
     public void addHotel(Hotel hotel) {
-        hotels.add(hotel);
+        hotelDB.addHotel(
+                hotel.getName(),
+                hotel.getLocation(),
+                List.of(hotel.getAmenities().split(", ")),
+                hotel.getDescription(),
+                hotel.getImagesURL()
+        );
     }
 
-    // removes a hotel off the list
+    // removes a hotel from the database by name
     public void removeHotel(String name) {
-        hotels.removeIf(hotel -> hotel.getName().equals(name));
+        Hotel hotel = getHotel(name);
+        if (hotel != null) {
+            hotelDB.deleteHotel(hotel.getId());
+        }
     }
-
 }

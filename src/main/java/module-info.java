@@ -1,6 +1,7 @@
 module com.hopur7h.hotels.hopur7h {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
     opens com.hopur7h.hotels.hopur7h to javafx.fxml;
     opens com.hopur7h.hotels.hopur7h.view to javafx.fxml;

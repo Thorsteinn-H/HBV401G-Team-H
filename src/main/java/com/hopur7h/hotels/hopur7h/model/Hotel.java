@@ -18,6 +18,7 @@ public class Hotel {
     private String description;
     private List<Room> rooms;
     private String imagesURL;
+    private int id;
 
     //constructs a new hotel object with following details
     public Hotel(String name, String location, List<String> amenities, String description, List<Room> rooms, String imagesURL) {
@@ -32,6 +33,15 @@ public class Hotel {
     // retrieves the name of the hotel
     public String getName() {
         return name;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // retrieves the location of the hotel

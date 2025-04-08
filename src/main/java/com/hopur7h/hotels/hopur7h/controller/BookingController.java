@@ -4,45 +4,49 @@ import com.hopur7h.hotels.hopur7h.model.Booking;
 import com.hopur7h.hotels.hopur7h.model.Customer;
 import com.hopur7h.hotels.hopur7h.model.Hotel;
 import com.hopur7h.hotels.hopur7h.model.Room;
+import com.hopur7h.hotels.hopur7h.storage.BookingDB;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Nafn : Þorsteinn H. Erlendsson
+ * Nafn : Þjórsteinn H. Erlendsson
  * Tölvupóstur: the85@hi.is
  * Lýsing:
  **/
 public class BookingController {
 
-    private List<Booking> bookings = new ArrayList<>();
+    private BookingDB bookingDB = new BookingDB();
 
     public List<Booking> getAllBookings() {
-        return new ArrayList<>(bookings);
+        return bookingDB.getAllBookings();
     }
 
-    // creates new booking based on given details
+    // creates new booking and stores it in the database
     public Booking createNewBooking(Customer customer, Date checkIn, Date checkOut, Hotel hotel, Room roomChosen) {
-        Booking newBooking = Booking.bookHotel(customer, checkIn, checkOut, hotel, roomChosen);
-        bookings.add(newBooking);
-        return newBooking;
+        bookingDB.addBooking(
+                customer,
+                hotel,
+                roomChosen.getId(),
+                checkIn,
+                checkOut,
+                roomChosen.getPrice(),
+                "pending",
+                "card"
+        );
+
+        // Optionally, return the latest booking by customer/hotel/date (not perfect but okay as placeholder)
+        return new Booking(1, customer, roomChosen.getId(), hotel, checkIn, checkOut, roomChosen.getPrice(), "pending", "card");
     }
 
-    // removes specified booking from the list
+    // deletes a booking by id
     public boolean removeBooking(Booking booking) {
-        return bookings.remove(booking);
+        bookingDB.deleteBooking(booking.getId());
+        return true;
     }
 
-    // searches for a booking by booking id
+    // fetches a booking by id
     public Booking getBooking(int id) {
-        for (Booking booking : bookings) {
-            if (booking.getId() == id) {
-                return booking;
-            }
-        }
-        return null; // or throw an exception if not found
+        return bookingDB.getBookingById(id);
     }
 }
-
-

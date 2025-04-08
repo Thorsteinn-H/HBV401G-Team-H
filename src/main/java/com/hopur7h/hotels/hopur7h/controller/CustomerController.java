@@ -1,45 +1,45 @@
 package com.hopur7h.hotels.hopur7h.controller;
 
-/**
- * Nafn : Þorsteinn H. Erlendsson
- * Tölvupóstur: the85@hi.is
- * Lýsing:
- **/
-
 import com.hopur7h.hotels.hopur7h.model.Customer;
+import com.hopur7h.hotels.hopur7h.storage.CustomerDB;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerController {
 
-    private List<Customer> customers = new ArrayList<>();
+    private CustomerDB customerDB = new CustomerDB();
 
     // retrieves a customer based on username
     public Customer getCustomer(String username) {
-        for (Customer customer : customers) {
-            if (customer.getUsername().equals(username)) {
-                return customer;
-            }
-        }
-        return null; // or throw an exception if not found
+        return customerDB.getAllCustomers().stream()
+                .filter(c -> c.getUsername().equals(username))
+                .findFirst()
+                .orElse(null);
     }
 
-    // retrieves all customers managed by this controller
+    // retrieves all customers from the database
     public List<Customer> getAllCustomers() {
-        return new ArrayList<>(customers);
+        return customerDB.getAllCustomers();
     }
 
-    // adds costumer to the list
+    // adds a customer to the database
     public void addCustomer(Customer customer) {
-        customers.add(customer);
-
+        customerDB.addCustomer(
+                customer.getUsername(),
+                customer.getName(),
+                "default",
+                customer.getEmail(),
+                customer.getPhoneNumber()
+        );
     }
+/**
+ public void removeCustomer(String username) {
+ List<Customer> all = customerDB.getAllCustomers();
+ for (Customer c : all) {
+ if (c.getUsername().equals(username)) {
 
-    // removes customer from the list
-    public void removeCustomer(String username) {
-        customers.removeIf(customer -> customer.getUsername().equals(username));
-    }
-
-
+ }
+ }
+ }
+ **/
 }

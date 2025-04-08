@@ -21,7 +21,7 @@ public class HotelDetailedController {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
 
-        hotelName.setText(hotel.getName());
+        hotelName.setText(hotel.getName() + " | " + hotel.getId());
         hotelDescription.setText(hotel.getDescription());
 
         // Default dates for demo

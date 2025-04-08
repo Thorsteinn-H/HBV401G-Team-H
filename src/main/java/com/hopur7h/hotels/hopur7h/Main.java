@@ -1,9 +1,11 @@
 package com.hopur7h.hotels.hopur7h;
 
+import com.hopur7h.hotels.hopur7h.storage.DatabaseInit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 
 public class Main extends Application {
     @Override
@@ -16,6 +18,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        DatabaseInit.initDatabase();
+
         launch(args);
     }
 }
