@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class MainViewController {
     private CustomerController customerController = new CustomerController();
 
     private Customer placeholderCustomer;
+    private List<Hotel> displayedHotels = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -46,10 +48,10 @@ public class MainViewController {
         currentUserLabel.setText("Logged in as: " + placeholderCustomer.getUsername());
 
         hotelListView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // double click
+            if (event.getClickCount() == 2) {
                 int selectedIndex = hotelListView.getSelectionModel().getSelectedIndex();
-                if (selectedIndex >= 0) {
-                    Hotel selectedHotel = hotelController.getAllHotels().get(selectedIndex);
+                if (selectedIndex >= 0 && selectedIndex < displayedHotels.size()) {
+                    Hotel selectedHotel = displayedHotels.get(selectedIndex);
                     openHotelDetails(selectedHotel);
                 }
             }
@@ -72,27 +74,28 @@ public class MainViewController {
 
 
     private void showAllHotels() {
+        displayedHotels = hotelController.getAllHotels();
         hotelListView.getItems().clear();
-        for (Hotel hotel : hotelController.getAllHotels()) {
+        for (Hotel hotel : displayedHotels) {
             hotelListView.getItems().add(formatHotelInfo(hotel));
         }
     }
+
+    @FXML
+    private void onSearchClick() {
+        String query = searchField.getText().trim();
+        displayedHotels = hotelController.searchHotels(query);
+        hotelListView.getItems().clear();
+        for (Hotel hotel : displayedHotels) {
+            hotelListView.getItems().add(formatHotelInfo(hotel));
+        }
+    }
+
 
     private String formatHotelInfo(Hotel hotel) {
         return hotel.getName() + " - " + hotel.getLocation() + " | " + hotel.getAmenities();
     }
 
-
-    @FXML
-    private void onSearchClick() {
-        String query = searchField.getText().trim();
-        hotelListView.getItems().clear();
-
-        List<Hotel> results = hotelController.searchHotels(query);
-        for (Hotel hotel : results) {
-            hotelListView.getItems().add(formatHotelInfo(hotel));
-        }
-    }
 
     private void openHotelDetails(Hotel hotel) {
         try {

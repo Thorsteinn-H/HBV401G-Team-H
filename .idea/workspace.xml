@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da804ada-c3c0-4e6d-9407-5a162d4fdee4" name="Changes" comment="">
+    <list default="true" id="da804ada-c3c0-4e6d-9407-5a162d4fdee4" name="Changes" comment="clean up code a bit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Room.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/CustomerDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/storage/CustomerDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/HotelDetailedController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/model/Booking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hopur7h/hotels/hopur7h/view/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/hopur7h/hotels/hopur7h/view/HotelDetailed.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +74,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Maven.hopur7h [clean,javafx:run]">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="HBV401G-Team-H" />
       <method v="2">
@@ -140,6 +136,36 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration name="hopur7h [clean,package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Maven.hopur7h [clean,javafx:run]" />
+      <item itemvalue="Maven.hopur7h [clean,package]" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -172,6 +198,7 @@
     <MESSAGE value="added images, ability to check how many rooms are available" />
     <MESSAGE value="added current user label" />
     <MESSAGE value="removed Room object" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed Room object" />
+    <MESSAGE value="clean up code a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up code a bit" />
   </component>
 </project>

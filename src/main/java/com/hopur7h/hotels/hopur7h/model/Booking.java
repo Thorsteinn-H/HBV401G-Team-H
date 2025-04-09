@@ -12,11 +12,9 @@ public class Booking {
 
     private Integer id;
     private Customer customer;
-    private Integer room;
     private Hotel hotel;
     private Date checkIn;
     private Date checkOut;
-    private Integer price;
     private String status;
     private String paymentMethod;
 
